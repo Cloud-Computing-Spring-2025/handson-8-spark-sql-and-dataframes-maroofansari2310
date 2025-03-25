@@ -2,19 +2,25 @@ import csv
 import os
 import random
 from datetime import datetime, timedelta
+from faker import Faker  # Add this import
+
+fake = Faker()
 
 # Create input directory if it doesn't exist
 os.makedirs("input", exist_ok=True)
 
-# Sample users
+# Generate unique usernames dynamically
+def generate_usernames(count):
+    return [fake.unique.user_name() for _ in range(count)]
+
+# Generate 50 unique users
 user_data = []
-usernames = [
-    "@techie42", "@critic99", "@daily_vibes", "@designer_dan", "@rage_user",
-    "@meme_lord", "@social_queen", "@calm_mind", "@pixel_pusher", "@stream_bot"
-]
 age_groups = ["Teen", "Adult", "Senior"]
 countries = ["US", "UK", "Canada", "India", "Germany", "Brazil"]
 verified_status = [True, False]
+
+# Generate 50 unique usernames
+usernames = generate_usernames(50)
 
 for user_id in range(1, 51):
     user = {
